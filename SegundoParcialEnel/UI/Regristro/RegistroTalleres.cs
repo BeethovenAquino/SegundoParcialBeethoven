@@ -73,6 +73,7 @@ namespace SegundoParcialEnel.UI.Regristro
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            Taller taller = LlenarClase();
             if (Validar(2))
             {
 
@@ -84,22 +85,30 @@ namespace SegundoParcialEnel.UI.Regristro
 
 
             if (TallerIDnumericUpDown.Value == 0)
-                paso = BLL.TallerBLL.Guardar(LlenarClase());
-            else
-                paso = BLL.TallerBLL.Modificar(LlenarClase());
-
-
-            if (paso)
             {
-
-                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                TallerIDnumericUpDown.Value = 0;
-                NombretextBox.Clear();
-                errorProvider.Clear();
-                
+                paso = BLL.TallerBLL.Guardar(taller);
             }
             else
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                var T= BLL.TallerBLL.Buscar(Convert.ToInt32(TallerIDnumericUpDown.Value));
+
+                if (T!= null)
+                {
+                    paso = BLL.TallerBLL.Modificar(taller);
+                }
+
+                if (paso)
+                {
+
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TallerIDnumericUpDown.Value = 0;
+                    NombretextBox.Clear();
+                    errorProvider.Clear();
+
+                }
+                else
+                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)

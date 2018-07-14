@@ -67,6 +67,7 @@ namespace SegundoParcialEnel.UI.Regristro
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            Articulos articulos = LlenarClase();
             if (Validar(2))
             {
 
@@ -78,25 +79,33 @@ namespace SegundoParcialEnel.UI.Regristro
 
 
             if (ArticuloIDnumericUpDown.Value == 0)
-                paso = BLL.ArticulosBLL.Guardar(LlenarClase());
-            else
-                paso = BLL.ArticulosBLL.Modificar(LlenarClase());
-
-
-            if (paso)
             {
-
-                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ArticuloIDnumericUpDown.Value = 0;
-                DescripciontextBox.Clear();
-                CostonumericUpDown.Value = 0;
-                PrecionumericUpDown.Value = 0;
-                GanancianumericUpDown.Value=0;
-                InventariotextBox.Clear();
-                errorProvider.Clear();
+                paso = BLL.ArticulosBLL.Guardar(articulos);
             }
             else
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                var A = BLL.ArticulosBLL.Buscar(Convert.ToInt32(ArticuloIDnumericUpDown.Value));
+
+                if (A != null)
+                {
+                    paso = BLL.ArticulosBLL.Modificar(articulos);
+                }
+
+                if (paso)
+                {
+
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ArticuloIDnumericUpDown.Value = 0;
+                    DescripciontextBox.Clear();
+                    CostonumericUpDown.Value = 0;
+                    PrecionumericUpDown.Value = 0;
+                    GanancianumericUpDown.Value = 0;
+                    InventariotextBox.Clear();
+                    errorProvider.Clear();
+                }
+                else
+                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)

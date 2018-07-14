@@ -73,6 +73,7 @@ namespace SegundoParcialEnel.UI.Regristro
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            EntradaArticulos entradaArticulos = LlenarClase();
             if (Validar(2))
             {
 
@@ -84,23 +85,31 @@ namespace SegundoParcialEnel.UI.Regristro
 
 
             if (EntradaIDnumericUpDown.Value == 0)
-                paso = BLL.EntradaAriticulos.Guardar(LlenarClase());
-            else
-                paso = BLL.EntradaAriticulos.Modificar(LlenarClase());
-
-
-            if (paso)
             {
-
-                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EntradaIDnumericUpDown.Value = 0;
-                FechadateTimePicker.Value = DateTime.Now;
-                CantidadnumericUpDown.Value = 0;
-                ArticulocomboBox.Text.ToString();
-                errorProvider.Clear();
+                paso = BLL.EntradaAriticulos.Guardar(entradaArticulos);
             }
             else
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                var E = BLL.EntradaAriticulos.Buscar(Convert.ToInt32(EntradaIDnumericUpDown.Value));
+
+                if (E != null)
+                {
+                    paso = BLL.EntradaAriticulos.Modificar(entradaArticulos);
+                }
+
+                if (paso)
+                {
+
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EntradaIDnumericUpDown.Value = 0;
+                    FechadateTimePicker.Value = DateTime.Now;
+                    CantidadnumericUpDown.Value = 0;
+                    ArticulocomboBox.Text.ToString();
+                    errorProvider.Clear();
+                }
+                else
+                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)

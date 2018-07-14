@@ -346,9 +346,12 @@ namespace SegundoParcialEnel.UI.Regristro
             }
             else
             {
+                var M = BLL.MantenimientoBLL.Buscar(Convert.ToInt32(MantenimientoIDnumericUpDown.Value));
 
-                Paso = BLL.MantenimientoBLL.Modificar(mantenimiento);
-                
+                if (M != null)
+                {
+                    Paso = BLL.MantenimientoBLL.Modificar(mantenimiento);
+                }
                 ValidarerrorProvider.Clear();
             }
 

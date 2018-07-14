@@ -55,6 +55,7 @@ namespace SegundoParcialEnel.UI.Regristro
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            Vehiculos vehiculos = LlenarClase();
             if (Validar(2))
             {
 
@@ -65,23 +66,33 @@ namespace SegundoParcialEnel.UI.Regristro
             errorProvider.Clear();
 
 
-            if (VehiculoIDnumericUpDown.Value == 0)
-                paso = BLL.VehiculosBLL.Guardar(LlenarClase());
-            else
-                paso = BLL.VehiculosBLL.Modificar(LlenarClase());
-
-
-            if (paso)
+            int id = Convert.ToInt32(VehiculoIDnumericUpDown.Value);
+            if (id == 0)
             {
-
-                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                VehiculoIDnumericUpDown.Value = 0;
-                DescripciontextBox.Clear();
-                TotalMantenimientotextBox.Clear();
-                errorProvider.Clear();
+                paso = BLL.VehiculosBLL.Guardar(vehiculos);
             }
             else
-                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                var V = BLL.VehiculosBLL.Buscar(id);
+
+                if (V != null)
+                {
+                    paso = BLL.VehiculosBLL.Modificar(vehiculos);
+                }
+
+
+                if (paso)
+                {
+
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    VehiculoIDnumericUpDown.Value = 0;
+                    DescripciontextBox.Clear();
+                    TotalMantenimientotextBox.Clear();
+                    errorProvider.Clear();
+                }
+                else
+                    MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
