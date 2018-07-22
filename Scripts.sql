@@ -2,7 +2,7 @@ CREATE DATABASE SegundoParcialDb
 GO
 USE SegundoParcialDb
 GO
-truncate table Mantenimientoes(
+create table Mantenimientoes(
 			MantenimientoID int primary key identity(1,1),
 			VehiculoID int,
             Fecha date,
@@ -14,7 +14,7 @@ truncate table Mantenimientoes(
 );
 go
 go
-truncate table MatenimientoDetalles(
+create table MatenimientoDetalles(
 
 		 ID int primary key identity(1,1),
 			MantenimientoID int,
@@ -23,7 +23,8 @@ truncate table MatenimientoDetalles(
             Articulo varchar(40),
             Cantidad int,
             Precio money, 
-            Importe money
+            Importe money,
+			 
 
 );
 go

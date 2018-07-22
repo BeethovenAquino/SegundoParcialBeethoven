@@ -18,6 +18,7 @@ namespace SegundoParcialEnel.Entidades
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
         public decimal Importe { get; set; }
+ 
 
         [ForeignKey("ArticulosID")]
         public virtual Articulos Articulos { get; set; }
@@ -26,7 +27,8 @@ namespace SegundoParcialEnel.Entidades
         {
             ID = 0;
             MantenimientoID = 0;
-        }
+
+    }
 
         public MatenimientoDetalle(int id, int mantenimientoId, int tallerId, int articulosId, string articulo,int cantidad,decimal precio, decimal importe)
         {
@@ -40,6 +42,7 @@ namespace SegundoParcialEnel.Entidades
             Cantidad = cantidad;
             Precio = precio;
             Importe = importe;
+  
         }
 
 
@@ -53,6 +56,7 @@ namespace SegundoParcialEnel.Entidades
             Cantidad = cantidad;
             Precio = precio;
             Importe = importe;
+          
         }
     }
 }

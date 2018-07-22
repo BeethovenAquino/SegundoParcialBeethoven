@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 namespace SegundoParcialEnel.UI.Consulta
 {
-    public partial class ConsultaArticulos : Form
+    public partial class CosultaVehiculos : Form
     {
-        public ConsultaArticulos()
+        public CosultaVehiculos()
         {
             InitializeComponent();
         }
 
         private void Buscar1button_Click(object sender, EventArgs e)
         {
-            Expression<Func<Articulos, bool>> filtro = x => true;
+            Expression<Func<Vehiculos, bool>> filtro = x => true;
             int id;
             if (CriteriotextBox.Text == string.Empty && FiltrocomboBox.SelectedIndex != 2)
             {
@@ -34,20 +34,20 @@ namespace SegundoParcialEnel.UI.Consulta
             {
                 case 0: //id
                     id = Convert.ToInt32(CriteriotextBox.Text);
-                    filtro = x => x.ArticuloID == id;
+                    filtro = x => x.VehiculoID == id;
                     break;
 
                 case 1: //Descripcion
                     string d = CriteriotextBox.Text;
                     filtro = x => x.Descripcion == d;
-                    
+
                     break;
 
                 case 2://todo
-                    ConsulArticulosdataGridView.DataSource = BLL.ArticulosBLL.GetList(filtro);
+                    ConsulVehiculosdataGridView.DataSource = BLL.VehiculosBLL.GetList(filtro);
                     break;
             }
-            ConsulArticulosdataGridView.DataSource = BLL.ArticulosBLL.GetList(filtro);
+            ConsulVehiculosdataGridView.DataSource = BLL.VehiculosBLL.GetList(filtro);
         }
 
         private void FiltrocomboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +59,6 @@ namespace SegundoParcialEnel.UI.Consulta
             else
                 CriteriotextBox.Enabled = true;
         }
-
     }
-}
+    }
 

@@ -1,4 +1,5 @@
 ﻿using SegundoParcialEnel.Entidades;
+using SegundoParcialEnel.UI.Consulta;
 using SegundoParcialEnel.UI.Regristro;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,18 @@ namespace SegundoParcialEnel
         private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegistroVehiculos V = new RegistroVehiculos();
+            V.Show();
+        }
+
+        private void personaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConsultaArticulos a = new ConsultaArticulos();
+            a.Show();
+        }
+
+        private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CosultaVehiculos V = new CosultaVehiculos();
             V.Show();
         }
     }

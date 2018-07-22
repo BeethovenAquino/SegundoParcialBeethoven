@@ -119,12 +119,16 @@
             // personaToolStripMenuItem1
             // 
             this.personaToolStripMenuItem1.Name = "personaToolStripMenuItem1";
-            this.personaToolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
+            this.personaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.personaToolStripMenuItem1.Text = "Articulo";
+            this.personaToolStripMenuItem1.Click += new System.EventHandler(this.personaToolStripMenuItem1_Click);
             // 
             // articulosToolStripMenuItem
             // 
             this.articulosToolStripMenuItem.Name = "articulosToolStripMenuItem";
-            this.articulosToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.articulosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.articulosToolStripMenuItem.Text = "Vehiculo";
+            this.articulosToolStripMenuItem.Click += new System.EventHandler(this.articulosToolStripMenuItem_Click);
             // 
             // MainForm
             // 
